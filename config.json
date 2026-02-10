@@ -1,0 +1,49 @@
+{
+  "name": "Melissa Gonzalez Soto",
+  "tagline": "Researcher & writer.",
+  "contact": [
+    {
+      "label": "Email",
+      "value": "melissaglzsoto@gmail.com",
+      "href": "mailto:you@example.com"
+    },
+    {
+      "label": "Location",
+      "value": "Guelph, ON, Canada"
+    },
+    {
+      "label": "LinkedIn",
+      "value": "linkedin.com/in/your-handle",
+      "href": "https://linkedin.com/in/your-handle"
+    },
+    {
+      "label": "Website",
+      "value": "yourdomain.com",
+      "href": "https://yourdomain.com"
+    }
+  ],
+  "articles": [
+    {
+      "title": "Gonzalez-Soto et al, FASEB J 2025",
+      "file": "articles/Gonzalez-Soto et al, FASEB J 2025.pdf"
+    },
+    {
+      "title": "Gonzalez-Soto et al, Nutrients 2021",
+      "file": "articles/Gonzalez-Soto et al, Nutrients 2021.pdf"
+    }
+  ],
+  "resume": [
+    {
+      "heading": "Experience",
+      "details": "Lead Researcher, Example Lab (2022–Present)"
+    },
+    {
+      "heading": "Education",
+      "details": "Ph.D., Field of Study, University Name"
+    },
+    {
+      "heading": "Expertise",
+      "details": "Computational modeling, data visualization, policy analysis"
+    }
+  ]
+}
