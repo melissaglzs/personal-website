@@ -1,0 +1,272 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Personal Site</title>
+    <style>
+      :root {
+        --bg: #f4f0ea;
+        --ink: #111112;
+        --accent: #0b3d3f;
+        --muted: #6c6a67;
+        --panel: #fffaf2;
+        --tab: #e7e1d9;
+        --tab-active: #0b3d3f;
+        --tab-active-ink: #ffffff;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        font-family: "Sora", "Space Grotesk", "Segoe UI", sans-serif;
+        color: var(--ink);
+        background: linear-gradient(120deg, #f1e9dd 0%, #f7f2ea 45%, #efe7dd 100%);
+        min-height: 100vh;
+      }
+
+      .page {
+        max-width: 1080px;
+        margin: 0 auto;
+        padding: 48px 24px 64px;
+      }
+
+      header {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        margin-bottom: 28px;
+      }
+
+      header h1 {
+        font-size: clamp(2rem, 3vw, 3rem);
+        margin: 0;
+        letter-spacing: -0.02em;
+      }
+
+      header p {
+        margin: 0;
+        color: var(--muted);
+      }
+
+      .tabs {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+        gap: 10px;
+        margin-bottom: 24px;
+      }
+
+      .tab-button {
+        border: none;
+        padding: 14px 18px;
+        border-radius: 999px;
+        background: var(--tab);
+        color: var(--ink);
+        font-size: 0.95rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: transform 0.2s ease, background 0.2s ease, color 0.2s ease;
+      }
+
+      .tab-button[aria-selected="true"] {
+        background: var(--tab-active);
+        color: var(--tab-active-ink);
+        transform: translateY(-2px);
+      }
+
+      .tab-panel {
+        display: none;
+        background: var(--panel);
+        padding: 28px;
+        border-radius: 24px;
+        box-shadow: 0 24px 60px rgba(17, 17, 18, 0.08);
+      }
+
+      .tab-panel.active {
+        display: block;
+        animation: fadeIn 0.3s ease;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(6px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .contact-card {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 16px;
+        margin-top: 20px;
+      }
+
+      .contact-item {
+        padding: 16px;
+        border-radius: 16px;
+        background: #f0e8db;
+        border: 1px solid rgba(17, 17, 18, 0.06);
+      }
+
+      .contact-item h3 {
+        margin: 0 0 6px;
+        font-size: 0.95rem;
+        color: var(--muted);
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+      }
+
+      .contact-item p {
+        margin: 0;
+        font-weight: 600;
+      }
+
+      .resume-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 14px;
+        margin-top: 16px;
+      }
+
+      .resume-card {
+        padding: 18px;
+        border-radius: 16px;
+        background: #f5efe6;
+        border: 1px solid rgba(17, 17, 18, 0.06);
+      }
+
+      .articles-list {
+        display: grid;
+        gap: 12px;
+        margin-top: 16px;
+      }
+
+      .articles-list a {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 14px 16px;
+        border-radius: 14px;
+        background: #f7f1e7;
+        color: var(--ink);
+        text-decoration: none;
+        border: 1px solid rgba(17, 17, 18, 0.06);
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+      }
+
+      .articles-list a:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 12px 30px rgba(17, 17, 18, 0.08);
+      }
+
+      @media (max-width: 720px) {
+        .tab-panel {
+          padding: 20px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="page">
+      <header>
+        <h1>Your Name</h1>
+        <p>Researcher & writer. Welcome to my personal site.</p>
+      </header>
+
+      <nav class="tabs" role="tablist" aria-label="Site sections">
+        <button class="tab-button" role="tab" aria-selected="true" aria-controls="home" id="tab-home">
+          Home
+        </button>
+        <button class="tab-button" role="tab" aria-selected="false" aria-controls="articles" id="tab-articles">
+          Articles
+        </button>
+        <button class="tab-button" role="tab" aria-selected="false" aria-controls="resume" id="tab-resume">
+          Resume
+        </button>
+      </nav>
+
+      <section id="home" class="tab-panel active" role="tabpanel" aria-labelledby="tab-home">
+        <h2>Contact</h2>
+        <p>Happy to connect about research, collaborations, or speaking.</p>
+        <div class="contact-card">
+          <div class="contact-item">
+            <h3>Email</h3>
+            <p>you@example.com</p>
+          </div>
+          <div class="contact-item">
+            <h3>Location</h3>
+            <p>City, Country</p>
+          </div>
+          <div class="contact-item">
+            <h3>LinkedIn</h3>
+            <p>linkedin.com/in/your-handle</p>
+          </div>
+          <div class="contact-item">
+            <h3>Website</h3>
+            <p>yourdomain.com</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="articles" class="tab-panel" role="tabpanel" aria-labelledby="tab-articles">
+        <h2>Articles</h2>
+        <p>PDFs live in the <code>articles/</code> folder. Add your files and update the links below.</p>
+        <div class="articles-list">
+          <a href="articles/your-paper-1.pdf" target="_blank" rel="noopener">
+            <span>Sample Research Paper Title</span>
+            <span>PDF</span>
+          </a>
+          <a href="articles/your-paper-2.pdf" target="_blank" rel="noopener">
+            <span>Another Paper Title</span>
+            <span>PDF</span>
+          </a>
+        </div>
+      </section>
+
+      <section id="resume" class="tab-panel" role="tabpanel" aria-labelledby="tab-resume">
+        <h2>Resume</h2>
+        <p>Replace this with your real resume details or link a PDF.</p>
+        <div class="resume-grid">
+          <div class="resume-card">
+            <h3>Experience</h3>
+            <p>Lead Researcher, Example Lab (2022–Present)</p>
+          </div>
+          <div class="resume-card">
+            <h3>Education</h3>
+            <p>Ph.D., Field of Study, University Name</p>
+          </div>
+          <div class="resume-card">
+            <h3>Expertise</h3>
+            <p>Computational modeling, data visualization, policy analysis</p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script>
+      const tabs = Array.from(document.querySelectorAll('.tab-button'));
+      const panels = Array.from(document.querySelectorAll('.tab-panel'));
+
+      function activateTab(tab) {
+        tabs.forEach((btn) => {
+          const selected = btn === tab;
+          btn.setAttribute('aria-selected', selected);
+        });
+        panels.forEach((panel) => {
+          panel.classList.toggle('active', panel.id === tab.getAttribute('aria-controls'));
+        });
+      }
+
+      tabs.forEach((tab) => {
+        tab.addEventListener('click', () => activateTab(tab));
+      });
+    </script>
+  </body>
+</html>
