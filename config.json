@@ -5,7 +5,7 @@
     {
       "label": "Email",
       "value": "melissaglzsoto@gmail.com",
-      "href": "mailto:you@example.com"
+      "href": "mailto:melissaglzsoto@gmail.com"
     },
     {
       "label": "Location",
@@ -19,26 +19,25 @@
   ],
   "articles": [
     {
+      "title": "Gonzalez-Soto & Mutch, Adv Nutr 2020",
+      "file": "articles/Gonzalez-Soto & Mutch, Adv Nutr 2020.pdf"
+    },
+    {
       "title": "Gonzalez-Soto et al, FASEB J 2025",
       "file": "articles/Gonzalez-Soto et al, FASEB J 2025.pdf"
     },
     {
       "title": "Gonzalez-Soto et al, Nutrients 2021",
       "file": "articles/Gonzalez-Soto et al, Nutrients 2021.pdf"
+    },
+    {
+      "title": "Metherel et al, JLR 2024",
+      "file": "articles/Metherel et al, JLR 2024.pdf"
     }
   ],
-  "resume": [
-    {
-      "heading": "Experience",
-      "details": "Lead Researcher, Example Lab (2022–Present)"
-    },
-    {
-      "heading": "Education",
-      "details": "Ph.D., Field of Study, University Name"
-    },
-    {
-      "heading": "Expertise",
-      "details": "Computational modeling, data visualization, policy analysis"
-    }
-  ]
+  "resumeFile": {
+    "title": "CV Melissa Feb 26",
+    "file": "CV Melissa Feb 26.pdf",
+    "type": "PDF"
+  }
 }

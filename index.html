@@ -138,17 +138,26 @@
       }
 
       .resume-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-        gap: 14px;
         margin-top: 16px;
       }
 
-      .resume-card {
-        padding: 18px;
-        border-radius: 16px;
-        background: #f5efe6;
+      .resume-file {
+        display: inline-flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        padding: 14px 16px;
+        border-radius: 14px;
+        background: #f7f1e7;
+        color: var(--ink);
+        text-decoration: none;
         border: 1px solid rgba(17, 17, 18, 0.06);
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+      }
+
+      .resume-file:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 12px 30px rgba(17, 17, 18, 0.08);
       }
 
       .articles-list {
@@ -215,7 +224,6 @@
 
       <section id="resume" class="tab-panel" role="tabpanel" aria-labelledby="tab-resume">
         <h2>Resume</h2>
-        <p>Replace this with your real resume details or link a PDF.</p>
         <div class="resume-grid" id="resume-grid"></div>
       </section>
     </main>
@@ -283,19 +291,24 @@
         });
       }
 
-      function renderResume(items) {
+      function renderResume(item) {
         clearNode(resumeGrid);
-        items.forEach((item) => {
-          const card = document.createElement('div');
-          card.className = 'resume-card';
-          const heading = document.createElement('h3');
-          heading.textContent = item.heading;
-          const details = document.createElement('p');
-          details.textContent = item.details;
-          card.appendChild(heading);
-          card.appendChild(details);
-          resumeGrid.appendChild(card);
-        });
+        if (!item || !item.file || !item.title) return;
+
+        const link = document.createElement('a');
+        link.className = 'resume-file';
+        link.href = item.file;
+        link.target = '_blank';
+        link.rel = 'noopener';
+
+        const title = document.createElement('span');
+        title.textContent = item.title;
+        const badge = document.createElement('span');
+        badge.textContent = item.type || 'PDF';
+
+        link.appendChild(title);
+        link.appendChild(badge);
+        resumeGrid.appendChild(link);
       }
 
       async function loadConfig() {
@@ -309,7 +322,7 @@
           if (config.tagline) siteTagline.textContent = config.tagline;
           if (Array.isArray(config.contact)) renderContactItems(config.contact);
           if (Array.isArray(config.articles)) renderArticles(config.articles);
-          if (Array.isArray(config.resume)) renderResume(config.resume);
+          if (config.resumeFile) renderResume(config.resumeFile);
         } catch (error) {
           console.warn('Config load error:', error);
         }
