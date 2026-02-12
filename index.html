@@ -52,6 +52,12 @@
         color: var(--muted);
       }
 
+      #site-tagline {
+        font-size: clamp(1.05rem, 1.4vw, 1.2rem);
+        line-height: 1.7;
+        max-width: 78ch;
+      }
+
       .tabs {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
@@ -261,7 +267,7 @@
 
       <section id="articles" class="tab-panel" role="tabpanel" aria-labelledby="tab-articles">
         <h2>Articles</h2>
-        <p> You can view the complete list of articles that I have published <a href="https://pubmed.ncbi.nlm.nih.gov/?term=melissa+gonzalez+soto"> here. </a> Below is a list of open access articles.</p>
+        <p> You can view the complete list of articles that I have published <a href="https://pubmed.ncbi.nlm.nih.gov/?term=melissa+gonzalez+soto"> here</a>. Below is a list of open access articles.</p>
         <div class="articles-list" id="articles-list"></div>
       </section>
 
