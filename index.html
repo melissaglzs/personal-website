@@ -141,6 +141,12 @@
         margin-top: 16px;
       }
 
+      .resume-actions {
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+      }
+
       .resume-file {
         display: inline-flex;
         align-items: center;
@@ -160,13 +166,26 @@
         box-shadow: 0 12px 30px rgba(17, 17, 18, 0.08);
       }
 
+      .resume-preview {
+        width: 100%;
+        min-height: 720px;
+        border: 1px solid rgba(17, 17, 18, 0.1);
+        border-radius: 14px;
+        background: #ffffff;
+      }
+
       .articles-list {
         display: grid;
         gap: 12px;
         margin-top: 16px;
       }
 
-      .articles-list a {
+      .article-card {
+        display: grid;
+        gap: 10px;
+      }
+
+      .article-link {
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -179,14 +198,38 @@
         transition: transform 0.2s ease, box-shadow 0.2s ease;
       }
 
-      .articles-list a:hover {
+      .article-link:hover {
         transform: translateY(-2px);
         box-shadow: 0 12px 30px rgba(17, 17, 18, 0.08);
+      }
+
+      .article-abstract {
+        padding: 14px 16px;
+        border-radius: 14px;
+        background: #f2ebdf;
+        border: 1px solid rgba(17, 17, 18, 0.06);
+      }
+
+      .article-abstract h3 {
+        margin: 0 0 8px;
+        font-size: 0.95rem;
+        color: var(--muted);
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+      }
+
+      .article-abstract p {
+        margin: 0;
+        line-height: 1.5;
       }
 
       @media (max-width: 720px) {
         .tab-panel {
           padding: 20px;
+        }
+
+        .resume-preview {
+          min-height: 520px;
         }
       }
     </style>
@@ -275,7 +318,11 @@
       function renderArticles(items) {
         clearNode(articlesList);
         items.forEach((item) => {
+          const card = document.createElement('article');
+          card.className = 'article-card';
+
           const link = document.createElement('a');
+          link.className = 'article-link';
           link.href = item.file;
           link.target = '_blank';
           link.rel = 'noopener';
@@ -287,13 +334,29 @@
 
           link.appendChild(title);
           link.appendChild(badge);
-          articlesList.appendChild(link);
+
+          const abstractBox = document.createElement('div');
+          abstractBox.className = 'article-abstract';
+          const abstractHeading = document.createElement('h3');
+          abstractHeading.textContent = 'Abstract';
+          const abstractText = document.createElement('p');
+          abstractText.textContent = item.abstract || 'Add this article abstract in config.json to display it here.';
+
+          abstractBox.appendChild(abstractHeading);
+          abstractBox.appendChild(abstractText);
+
+          card.appendChild(link);
+          card.appendChild(abstractBox);
+          articlesList.appendChild(card);
         });
       }
 
       function renderResume(item) {
         clearNode(resumeGrid);
         if (!item || !item.file || !item.title) return;
+
+        const wrapper = document.createElement('div');
+        wrapper.className = 'resume-actions';
 
         const link = document.createElement('a');
         link.className = 'resume-file';
@@ -308,7 +371,15 @@
 
         link.appendChild(title);
         link.appendChild(badge);
-        resumeGrid.appendChild(link);
+        wrapper.appendChild(link);
+
+        const preview = document.createElement('iframe');
+        preview.className = 'resume-preview';
+        preview.src = `${item.file}#view=FitH`;
+        preview.title = `${item.title} preview`;
+        wrapper.appendChild(preview);
+
+        resumeGrid.appendChild(wrapper);
       }
 
       async function loadConfig() {
