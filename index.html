@@ -237,7 +237,9 @@
 
       function renderContactItems(items) {
         clearNode(contactList);
-        items.forEach((item) => {
+        items
+          .filter((item) => item && item.label && item.value)
+          .forEach((item) => {
           const card = document.createElement('div');
           card.className = 'contact-item';
 
@@ -259,7 +261,7 @@
           card.appendChild(label);
           card.appendChild(value);
           contactList.appendChild(card);
-        });
+          });
       }
 
       function renderArticles(items) {
